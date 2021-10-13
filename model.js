@@ -1,9 +1,9 @@
-let computerPlay = function() {
+function computerPlay() {
     let randomNum = Math.floor(Math.random() * 10 + 1) % 3
     switch (randomNum) {
         case 0:
             return "rock"
-        
+
         case 1:
             return "paper"
 
@@ -12,8 +12,8 @@ let computerPlay = function() {
     }
 }
 
-let playOnce = function (player_choice, computer_choice) {
-    player_choice = player_choice.tolowerCase()
+function playOnce(player_choice, computer_choice) {
+    player_choice = player_choice.toLowerCase()
     let result = ""
     switch (player_choice) {
         case "rock":
@@ -21,32 +21,38 @@ let playOnce = function (player_choice, computer_choice) {
                 result = "draw"
             else if (computer_choice == "paper")
                 result = "lose"
+
             else
                 result = "win"
-            break;
-        
+            break
+
         case "paper":
             if (computer_choice == "rock")
                 result = "win"
             else if (computer_choice == "paper")
                 result = "draw"
+
             else
                 result = "lose"
-            break;
+            break
 
         case "scissor":
             if (computer_choice == "rock")
                 result = "lsoe"
             else if (computer_choice == "paper")
                 result = "win"
+
             else
                 result = "draw"
-            break;
+            break
+
+        default:
+            return "Please enter rock/paper/scissor only"
     }
     return getResult(result, player_choice, computer_choice)
 }
 
-let getResult = function(result, player_choice, computer_choice){
+function getResult(result, player_choice, computer_choice) {
     switch (result) {
         case "win":
             return `You win! ${player_choice} beat ${computer_choice}`
