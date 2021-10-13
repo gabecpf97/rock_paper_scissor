@@ -1,0 +1,1 @@
+This is a rock paper scissor game that are being palyed in the console. It mostly uses simple swithc statement and if else statement to general the result.
