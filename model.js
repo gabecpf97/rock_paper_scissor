@@ -1,4 +1,11 @@
 /**
+ * This is a model file for a Rock Paper Scissor game that
+ * a player can play with a computer for 5 games each time
+ * @author Gabriel Chau
+ * @version Oct 13 2021
+ */
+
+/**
  * Uses random function in Math to general result for either
  * rock, paper or scissor
  * @returns the choice of the computer in String
@@ -24,7 +31,8 @@ function computerPlay() {
  * @returns the game's result statement in String
  */
 function playOnce(player_choice, computer_choice){
-    return getStatement(getResult(player_choice, computer_choice), player_choice, computer_choice)
+    return getStatement(getResult(player_choice, computer_choice), 
+            player_choice, computer_choice)
 }
 
 /**
@@ -90,7 +98,7 @@ function getStatement(result, player_choice, computer_choice) {
             return `You lose! ${computer_choice} beat ${player_choice}`
 
         case "draw":
-            return `You draw with computer! ${player_choice} and ${computer_choice} are the same`
+            return `You draw! ${player_choice} and ${computer_choice} are the same`
     }
 }
 
