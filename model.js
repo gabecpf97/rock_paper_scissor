@@ -107,18 +107,18 @@ function getStatement(result, player_choice, computer_choice) {
  * and the final result of the game
  * Takes no aragument
 */
-function game() {
-    let round_result = ""
-    let final_result = []
-    for (let i = 0; i < 5; i++) {
-        let cChoice = computerPlay();
-        let pChoice = prompt("Enter rock/paper/scissor", "a")
-        round_result = playOnce(pChoice, cChoice)
-        final_result.push(getResult(pChoice, cChoice))
-        console.log(round_result)
-    }
-    console.log(getScore(final_result))
-}
+// function game() {
+//     let round_result = ""
+//     let final_result = []
+//     for (let i = 0; i < 5; i++) {
+//         let cChoice = computerPlay();
+//         let pChoice = prompt("Enter rock/paper/scissor", "a")
+//         round_result = playOnce(pChoice, cChoice)
+//         final_result.push(getResult(pChoice, cChoice))
+//         console.log(round_result)
+//     }
+//     console.log(getScore(final_result))
+// }
 
 /**
  * Helper function that get the final score of the 5 games and reutrn
@@ -146,3 +146,20 @@ function getScore(final_result){
     else
         return "The final result are draw, lets try again"
 }
+
+
+const rock_butt = document.querySelector(".r_butt");
+const paper_butt = document.querySelector(".p_butt");
+const scissor_butt = document.querySelector(".s_butt");
+
+rock_butt.addEventListener('click', () => {
+    console.log(playOnce('rock', computerPlay()));
+});
+
+paper_butt.addEventListener('click', () => {
+    console.log(playOnce('paper', computerPlay()));
+});
+
+scissor_butt.addEventListener('click', () => {
+    console.log(playOnce('scissor', computerPlay()));
+});
