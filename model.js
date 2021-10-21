@@ -143,13 +143,27 @@ function getScore(final_result){
         return "The final result are draw, lets try again";
 }
 
+/**
+ * the following code will add event listener to the button
+ * and allow the program to track the score of player and
+ * allow user to play until they will 5 times
+ */
+
+/**
+ * get button and <p> from the html file
+ */
 const butts = document.querySelectorAll('button');
 const display_text = document.querySelector('.text');
 const display_result = document.querySelector('.result');
 const display_fin = document.querySelector('.fin');
 
+// counter array for scores
 let cnt = [0, 0, 0];
 
+/**
+ * add click listener to buttons and call game() to play once
+ * then display result and score.
+ */
 butts.forEach(butt => {
     butt.addEventListener('click', (e) => {
         let result = game(e.target.className);
@@ -165,6 +179,11 @@ butts.forEach(butt => {
     });
 });
 
+/**
+ * Helper function that store each round's result to the array
+ * @param {*} result current round result
+ * @returns String that display current score
+ */
 function showCurScore(result) {
     switch (result){
         case 'win':
