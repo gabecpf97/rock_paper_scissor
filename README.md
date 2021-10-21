@@ -1,1 +1,1 @@
-This is a rock paper scissor game that are being palyed in the console. It mostly uses simple swithc statement and if else statement to general the result.
+This is a rock paper scissor game that are being play by clicking on those three button (rock, paper, scissor), the game will continue to keep score until the user have win three time vs the computer.
