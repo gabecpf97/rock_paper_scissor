@@ -11,16 +11,16 @@
  * @returns the choice of the computer in String
  */
 function computerPlay() {
-    let randomNum = Math.floor(Math.random() * 10 + 1) % 3
+    let randomNum = Math.floor(Math.random() * 10 + 1) % 3;
     switch (randomNum) {
         case 0:
-            return "rock"
+            return "rock";
 
         case 1:
-            return "paper"
+            return "paper";
 
         case 2:
-            return "scissor"
+            return "scissor";
     }
 }
 
@@ -32,7 +32,7 @@ function computerPlay() {
  */
 function playOnce(player_choice, computer_choice){
     return getStatement(getResult(player_choice, computer_choice), 
-            player_choice, computer_choice)
+            player_choice, computer_choice);
 }
 
 /**
@@ -43,41 +43,41 @@ function playOnce(player_choice, computer_choice){
  * @returns the result of the game in String
  */
 function getResult(player_choice, computer_choice) {
-    player_choice = player_choice.toLowerCase()
-    let result = ""
+    player_choice = player_choice.toLowerCase();
+    let result = "";
     switch (player_choice) {
         case "rock":
             if (computer_choice == "rock")
-                result = "draw"
+                result = "draw";
             else if (computer_choice == "paper")
-                result = "lose"
+                result = "lose";
 
             else
-                result = "win"
-            break
+                result = "win";
+            break;
 
         case "paper":
             if (computer_choice == "rock")
-                result = "win"
+                result = "win";
             else if (computer_choice == "paper")
-                result = "draw"
+                result = "draw";
 
             else
-                result = "lose"
-            break
+                result = "lose";
+            break;
 
         case "scissor":
             if (computer_choice == "rock")
-                result = "lose"
+                result = "lose";
             else if (computer_choice == "paper")
-                result = "win"
+                result = "win";
 
             else
-                result = "draw"
-            break
+                result = "draw";
+            break;
 
         default:
-            return "Please enter rock/paper/scissor only"
+            return "Please enter rock/paper/scissor only";
     }
     return result;
 }
@@ -92,13 +92,13 @@ function getResult(player_choice, computer_choice) {
 function getStatement(result, player_choice, computer_choice) {
     switch (result) {
         case "win":
-            return `You win! ${player_choice} beat ${computer_choice}`
+            return `You win! ${player_choice} beat ${computer_choice}`;
 
         case "lose":
-            return `You lose! ${computer_choice} beat ${player_choice}`
+            return `You lose! ${computer_choice} beat ${player_choice}`;
 
         case "draw":
-            return `You draw! ${player_choice} and ${computer_choice} are the same`
+            return `You draw! ${player_choice} and ${computer_choice} are the same`;
     }
 }
 
@@ -107,18 +107,14 @@ function getStatement(result, player_choice, computer_choice) {
  * and the final result of the game
  * Takes no aragument
 */
-// function game() {
-//     let round_result = ""
-//     let final_result = []
-//     for (let i = 0; i < 5; i++) {
-//         let cChoice = computerPlay();
-//         let pChoice = prompt("Enter rock/paper/scissor", "a")
-//         round_result = playOnce(pChoice, cChoice)
-//         final_result.push(getResult(pChoice, cChoice))
-//         console.log(round_result)
-//     }
-//     console.log(getScore(final_result))
-// }
+function game(player_choice) {
+    let round_result = "";
+    let final_result = "";
+    let cChoice = computerPlay();
+    round_result = playOnce(player_choice, cChoice);
+    final_result = getResult(player_choice, cChoice);
+    return [round_result, final_result];
+}
 
 /**
  * Helper function that get the final score of the 5 games and reutrn
@@ -127,39 +123,61 @@ function getStatement(result, player_choice, computer_choice) {
  * @returns String of final result statement
  */
 function getScore(final_result){
-    let result = 0
+    let result = 0;
     for (let i = 0; i < final_result.length; i++){
         switch (final_result[i]) {
             case "win":
-                result++
+                result++;
                 break;
             
             case "lose":
-                result--
+                result--;
                 break;
         }
     }
     if (result > 0)
-        return "The final winner is you! Congradulation!"
+        return "The final winner is you! Congradulation!";
     else if (result < 0)
-        return "The final winner is computer, lets try again"
+        return "The final winner is computer, lets try again";
     else
-        return "The final result are draw, lets try again"
+        return "The final result are draw, lets try again";
 }
 
+const butts = document.querySelectorAll('button');
+const display_text = document.querySelector('.text');
+const display_result = document.querySelector('.result');
+const display_fin = document.querySelector('.fin');
 
-const rock_butt = document.querySelector(".r_butt");
-const paper_butt = document.querySelector(".p_butt");
-const scissor_butt = document.querySelector(".s_butt");
+let cnt = [0, 0, 0];
 
-rock_butt.addEventListener('click', () => {
-    console.log(playOnce('rock', computerPlay()));
+butts.forEach(butt => {
+    butt.addEventListener('click', (e) => {
+        let result = game(e.target.className);
+        display_text.textContent=  result[0];
+        display_result.textContent = showCurScore(result[1]);
+        if (cnt[0] >= 5){
+            display_fin.textContent = 
+                "You have win 5 times, the game will reset now";
+            cnt = [0, 0, 0];
+        } else {
+            display_fin.textContent = "";
+        }
+    });
 });
 
-paper_butt.addEventListener('click', () => {
-    console.log(playOnce('paper', computerPlay()));
-});
-
-scissor_butt.addEventListener('click', () => {
-    console.log(playOnce('scissor', computerPlay()));
-});
+function showCurScore(result) {
+    switch (result){
+        case 'win':
+            cnt[0]++;
+            break;
+        
+        case 'lose':
+            cnt[1]++;
+            break;
+        
+        case 'draw':
+            cnt[2]++;
+            break;
+    }
+    return `Win: ${cnt[0]}, Lose: ${cnt[1]}, Draw:${cnt[2]}`;
+}

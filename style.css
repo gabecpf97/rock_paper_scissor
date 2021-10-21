@@ -1,0 +1,30 @@
+body {
+    background-color: gray;
+}
+
+h1 {
+    text-align: center;
+    background-color: mediumslateblue;
+    margin: 0px;
+    padding: 24px;
+}
+
+.play {
+    display: flex;
+    justify-content: space-around;
+    padding: 24px 0px;
+}
+
+button {
+    padding: 10px 40px;
+    border-radius: 15px;
+    background-color: honeydew;
+}
+
+.display {
+    text-align: center;
+}
+
+.display p {
+    padding: 24px;
+}
